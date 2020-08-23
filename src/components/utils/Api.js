@@ -14,11 +14,24 @@ class Api {
         return fetch(getUrl)
         .then( res => res.json() )
         .then( json => {
-            console.log(`components/utils/Api#getList${input} json : `, json)
-            return json
+            
+            let result = json;
+
+            if (input === 'coins') {
+                result = json.map( (coin) => {
+                    return coin.id
+                });
+            }
+            // console.log(`components/utils/Api#getList${input} json : `, json);
+            // console.log(`components/utils/Api#getList${input} result : `, result);
+            result.sort();
+            return result;
         });
     }
     
+//input === 'coins' ? json.map((coin) => {return } ) :
+
+
     // simpleConvert(coin, fiat){
 
     //     coin = 'bitcoin';

@@ -1,11 +1,11 @@
 import React from 'react';
 import { 
     Button,
-    Form,
-    InputGroup,
     Row,
-    Col
+    Col,
  } from 'react-bootstrap';
+//  import Spinner from 'react-bootstrap/Spinner'
+ import List from '../core/list/List'
 
 class Convert extends React.Component {
 
@@ -13,6 +13,7 @@ class Convert extends React.Component {
         return(
 
             <Row>
+
                 <Col xs={{ span: 12, order: 'first'}} className="mb-3">
                 </Col>
 
@@ -20,55 +21,22 @@ class Convert extends React.Component {
 
                     <Row>
 
-                    <Col xs={{ span: 12, order: 'first' }} sm={6} lg={12} xl={6}>
+                    <Col xs={{ span: 12, order: 'first' }} sm={8} lg={12} xl={8}>
                     {/* <Col xs={{ span: 12, order: 'first' }} sm={12} lg={12}> */}
+                        <List
+                            default = 'bitcoin'
+                            listOf = 'coins'
+                            listContent = {this.props.coins}
+                        />
+                    </Col>
 
-                            <InputGroup  className="input-group mb-3">
-
-                                <InputGroup.Prepend>
-                                    <InputGroup.Text id="inputCoin">Crypto-monnaie</InputGroup.Text>
-                                </InputGroup.Prepend>
-
-                                {/* <FormControl /> */}
-
-                                <Form.Control as="select" className="selectZone">
-                                    <option>Coin ou token ...</option>
-                                    <option>Bitcoin</option>
-                                    <option>Ethereum</option>
-                                    <option>Litecoin</option>
-                                </Form.Control>
-                                
-                            </InputGroup >
-
-                        </Col>
-
-                        <Col xs={{ span: 12, order: 'last' }} sm={6} lg={12} xl={6}>
-
-                            <InputGroup  className="input-group mb-3">
-
-                                <InputGroup.Prepend>
-                                    <InputGroup.Text id="inputCoin">Devise</InputGroup.Text>
-                                </InputGroup.Prepend>
-
-                                {/* <FormControl /> */}
-
-                                <Form.Control as="select" className="selectZone">
-                                    <option>Devise...</option>
-                                    
-                                    {this.props.fiats.map( (fiat, index) => {
-
-                                        return(
-                                            <option key={index}>{fiat}</option>
-                                        )
-
-                                    })}
-                                </Form.Control>
-
-
-
-                            </InputGroup >
-
-                        </Col>
+                    <Col xs={{ span: 12, order: 'last' }} sm={4} lg={12} xl={4}>
+                        <List
+                            default = 'eur'
+                            listOf = 'fiats'
+                            listContent = {this.props.fiats}
+                        />
+                    </Col>
 
                     </Row>
 
@@ -76,7 +44,7 @@ class Convert extends React.Component {
 
                 <Col xs={{ span: 3, order: 3 }} md={{ span: 2, order: 3 }}  xl={1}>
 
-                    <Button variant="secondary">
+                    <Button variant="secondary" disabled>
                         convertir
                     </Button>
 
@@ -86,7 +54,7 @@ class Convert extends React.Component {
                 
                     <div className="card">
                         <div className="card-body">
-                            <h5>2606 Gluglu</h5>
+                            <h5>1 truc = 5 machins</h5>
                         </div>
                     </div>
 
