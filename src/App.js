@@ -25,15 +25,15 @@ class App extends React.Component{
     return( 
       <Router>
 
-        <Navbar bg="dark" variant="dark">
-        {/* </Navbar>className="navbar navbar-dark bg-dark"> */}
+        <Navbar expand="md" bg="dark" variant="dark">
           <Link to="/"><Navbar.Brand>Cryptos</Navbar.Brand></Link>
-            <div className="navbar-expand" id="navbarNav">
-              <ul className="navbar-nav "> 
-                <li className="nav-item disabled"><Link className="nav-link" to="/wallets">Portefeuilles</Link></li>
-                <li className="nav-item active"><Link className="nav-link" to="/convert">Convertisseur</Link></li>
-              </ul>
-            </div>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="justify-content-end" id="cryptosNav">
+            <Nav activeKey="1">
+              <Nav.Link eventKey="diabled"><Link className="nav-link" to="/wallets">Portefeuilles</Link></Nav.Link>
+              <Nav.Link eventKey="2"><Link className="nav-link" to="/convert">Convertisseur</Link></Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
         </Navbar>
 
         <Container fluid>            
@@ -59,7 +59,7 @@ class App extends React.Component{
             </Col>
           </Row>
         </Container>
-        
+
       </Router>
 
     );
