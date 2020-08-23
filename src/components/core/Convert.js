@@ -54,10 +54,14 @@ class Convert extends React.Component {
 
                                 <Form.Control as="select" className="selectZone">
                                     <option>Devise...</option>
-                                    <option>EUR</option>
-                                    <option>BTC</option>
-                                    <option>ETH</option>
-                                    <option>USD</option>
+                                    
+                                    {this.props.fiats.map( (fiat, index) => {
+
+                                        return(
+                                            <option key={index}>{fiat}</option>
+                                        )
+
+                                    })}
                                 </Form.Control>
 
 

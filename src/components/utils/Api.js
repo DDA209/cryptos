@@ -11,12 +11,11 @@ class Api {
         const getUrl = urlNext[input];
         console.log('components/utils/Api#getList getUrl : ', getUrl);
         
-        fetch(getUrl)
-        .this( res => res.json() )
-        .this( json => {
-            const result = json;
-            console.log('components/utils/Api#getList json : ', json);
-            return result;
+        return fetch(getUrl)
+        .then( res => res.json() )
+        .then( json => {
+            console.log(`components/utils/Api#getList${input} json : `, json)
+            return json
         });
     }
     
