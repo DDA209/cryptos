@@ -24,8 +24,12 @@ class List extends React.Component {
         };
 
         return (
-            <Form.Control as="select" className="list">
-                <option> </option>
+            <Form.Control
+                as="select"
+                className="list"
+                // {this.props.onChange}
+            >
+                <option>{""}</option>
                 {this.props.listContent.map( (data, index) => {
                     return(
                         <option key={index}>{data}</option>

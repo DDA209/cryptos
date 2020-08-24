@@ -29,9 +29,9 @@ class App extends React.Component{
           <Link to="/"><Navbar.Brand>Cryptos</Navbar.Brand></Link>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end" id="cryptosNav">
-            <Nav activeKey="1">
-              <Nav.Link eventKey="diabled"><Link className="nav-link" to="/wallets">Portefeuilles</Link></Nav.Link>
-              <Nav.Link eventKey="2"><Link className="nav-link" to="/convert">Convertisseur</Link></Nav.Link>
+            <Nav>
+              <Link className="nav-link" to="/wallets">Portefeuilles</Link>
+              <Link className="nav-link" to="/convert">Convertisseur</Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
