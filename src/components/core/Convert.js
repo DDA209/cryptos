@@ -14,23 +14,29 @@ class Convert extends React.Component {
         this.state = {
             buttonState: true,
             coin: '',
-            fiat: ''
-        }
+            fiat: '',
+            value: '',
+        };
+
+        console.log('components/core/Convert#constructor coin -', this.state.fiat, '-- fiat -', this.state.coin)
+        this.handleChange = this.handleChange.bind(this.handleChange);
     }
 
-    handleChange(event, type){
+    handleChange(event){
 
-        console.log('components/core/Convert#handleChange BEFORE : coin -', this.state.fiat, '-- fiat -', this.state.coin)
+        console.log('components/core/Convert#handleChange event', event);
+        console.log('components/core/Convert#handleChange event.target.value', event.target.value);
 
         this.setState({
-            type: event.target.value
-        })
+            value: event.target.value
+        });
 
-        console.log('components/core/Convert#handleChange AFTER : coin -', this.state.fiat, '-- fiat -', this.state.coin)
+        console.log('components/core/Convert#handleChange coin -', this.state.fiat, '-- fiat -', this.state.coin)
+
     }
 
     onClickBtn(){
-
+        return null;
     }
 
     render(){
@@ -63,8 +69,9 @@ class Convert extends React.Component {
                                 default = "bitcoin"
                                 listOf = "coins"
                                 listContent = {this.props.coins}
-                                value = {this.state.coin}
+                                value = {this.state.value}
                                 onChange = {this.handleChange}
+                                
                             />
                         </Col>
 
@@ -78,7 +85,7 @@ class Convert extends React.Component {
                                 default = "eur"
                                 listOf = "fiats"
                                 listContent = {this.props.fiats}
-                                value = {this.state.fiat}
+                                value = {this.state.value}
                                 onChange = {this.handleChange}
                             />
 
@@ -98,7 +105,7 @@ class Convert extends React.Component {
                         variant="secondary"
                         block
                         disabled={this.state.buttonState}
-                        onClick={this.onClickBtn()}
+                        onClick={this.onClickBtn}
                     >
                         convertir
                     </Button>
@@ -121,6 +128,7 @@ class Convert extends React.Component {
                 </Col>
 
             </Row>
+            
         )
     }
 }

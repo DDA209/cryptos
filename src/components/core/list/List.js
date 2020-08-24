@@ -13,7 +13,7 @@ const label = {
 class List extends React.Component {
 
     renderList(){
-        console.log('this.props.listContent.length ',this.props.listContent.length );
+        // console.log('this.props.listContent.length ',this.props.listContent.length );
 
         if ( this.props.listContent.length === 0 ){
             return (
@@ -25,11 +25,11 @@ class List extends React.Component {
 
         return (
             <Form.Control
-                as="select"
-                className="list"
-                // {this.props.onChange}
+                as = "select"
+                className = "list"
             >
                 <option>{""}</option>
+
                 {this.props.listContent.map( (data, index) => {
                     return(
                         <option key={index}>{data}</option>
@@ -50,6 +50,10 @@ class List extends React.Component {
                 </InputGroup.Prepend>
 
                     {this.renderList()}
+                    
+                    {/* <input type="text"
+                        onChange = { () => this.props.handleChange(this.value) }
+                    ></input> */}
                 
             </InputGroup >
         )
