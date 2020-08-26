@@ -27,6 +27,8 @@ class List extends React.Component {
             <Form.Control
                 as = "select"
                 className = "list"
+                value={this.props.input}
+                onChange={this.props.onChangeInput}
             >
                 <option>{""}</option>
 

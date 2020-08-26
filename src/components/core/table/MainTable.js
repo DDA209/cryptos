@@ -3,7 +3,7 @@ import {
     Table
  } from 'react-bootstrap';
 
-class Table extends React.Component{
+class MainTable extends React.Component{
 
     render(){
         return(
@@ -19,4 +19,4 @@ class Table extends React.Component{
     }
 }
 
-export default Table;
+export default MainTable;

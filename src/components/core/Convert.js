@@ -5,7 +5,8 @@ import {
     Col,
     Card
  } from 'react-bootstrap';
- import List from '../core/list/List'
+ import List from '../core/list/List';
+ import Input from './Input';
 
 class Convert extends React.Component {
     constructor(props){
@@ -16,30 +17,72 @@ class Convert extends React.Component {
             coin: '',
             fiat: '',
             value: '',
+            input: '',
+            form: {
+                name: 'Nobody'
+            }
         };
 
         console.log('components/core/Convert#constructor coin -', this.state.fiat, '-- fiat -', this.state.coin)
-        this.handleChange = this.handleChange.bind(this.handleChange);
+        console.log('components/core/Convert#constructor input -', this.state.input)
+        // this.handleChange = this.handleChange.bind(this.handleChange);
+        this.handleChange = this.handleChange.bind(this, 'name');
     }
 
-    handleChange(event){
+    // handleChange(event){
 
-        console.log('components/core/Convert#handleChange event', event);
-        console.log('components/core/Convert#handleChange event.target.value', event.target.value);
+    //     console.log('components/core/Convert#handleChange BEFORE input -', this.state.input, '-- coin -', this.state.fiat, '-- fiat -', this.state.coin)
 
-        this.setState({
-            value: event.target.value
-        });
+    //     this.setState({
+    //         input: event.target.value,
+    //     });
 
-        console.log('components/core/Convert#handleChange coin -', this.state.fiat, '-- fiat -', this.state.coin)
+    //     console.log('components/core/Convert#handleChange AFTER input -', this.state.input, '-- coin -', this.state.fiat, '-- fiat -', this.state.coin)
 
-    }
+    // }
 
     onClickBtn(){
         return null;
     }
 
+
+
+
+    onChangeInput(evt) { // valeur de l'input
+        this.setState({
+            input: evt.target.value
+        });
+
+    }
+
+    handleChange(change, event) {
+        console.log('handleChange event', event);
+        console.log('handleChange event.target.value', event.target.value);
+        console.log('handleChange change', change);
+
+        // let toChange = this.state.name;
+        // toChange[change] = event.target.value;
+        this.setState({
+            name: this.state[change]
+        });
+        
+        console.log('this.state.name', event.target.value)
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     render(){
+    
         return(
 
             <Row>
@@ -69,8 +112,8 @@ class Convert extends React.Component {
                                 default = "bitcoin"
                                 listOf = "coins"
                                 listContent = {this.props.coins}
-                                value = {this.state.value}
-                                onChange = {this.handleChange}
+                                // value = {this.state.value}
+                                handleChange = {this.handleChange}
                                 
                             />
                         </Col>
@@ -85,8 +128,8 @@ class Convert extends React.Component {
                                 default = "eur"
                                 listOf = "fiats"
                                 listContent = {this.props.fiats}
-                                value = {this.state.value}
-                                onChange = {this.handleChange}
+                                // value = {this.state.value}
+                                handleChange = {this.handleChange}
                             />
 
                         </Col>
@@ -119,12 +162,21 @@ class Convert extends React.Component {
                     xl={{ span: 3, offset: 0, order: 1 }}
                 >
                 
-                    <Card>
+                    <Card
+
+                    >
                         <Card.Body>
                             <Card.Text as="h5">1 truc = 5 machins</Card.Text>
                         </Card.Body>
                     </Card>
 
+                </Col>
+                <Col xs={12}>
+                    <Input
+                        handleChange={this.handleChange}
+                        form={this.state.form}
+                    >
+                    </Input>
                 </Col>
 
             </Row>
