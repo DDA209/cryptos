@@ -4,85 +4,99 @@ import {
     Row,
     Col,
     Card
- } from 'react-bootstrap';
- import List from '../core/list/List';
- import Input from './Input';
+} from 'react-bootstrap';
+import List from '../core/list/List';
+import Api from '../utils/Api';
 
 class Convert extends React.Component {
     constructor(props){
         super(props)
 
         this.state = {
-            buttonState: true,
+            isDisabled: 'disabled',
             coin: '',
             fiat: '',
             value: '',
             input: '',
-            form: {
-                name: 'Nobody'
-            }
+            convertionResult: '...',
+            
         };
 
         console.log('components/core/Convert#constructor coin -', this.state.fiat, '-- fiat -', this.state.coin)
         console.log('components/core/Convert#constructor input -', this.state.input)
-        // this.handleChange = this.handleChange.bind(this.handleChange);
-        this.handleChange = this.handleChange.bind(this, 'name');
+        this.handleChangeCoin = this.handleChangeCoin.bind(this);
+        this.handleChangeFiat = this.handleChangeFiat.bind(this);
+        this.onClickBtn = this.onClickBtn.bind(this);
     }
-
-    // handleChange(event){
-
-    //     console.log('components/core/Convert#handleChange BEFORE input -', this.state.input, '-- coin -', this.state.fiat, '-- fiat -', this.state.coin)
-
-    //     this.setState({
-    //         input: event.target.value,
-    //     });
-
-    //     console.log('components/core/Convert#handleChange AFTER input -', this.state.input, '-- coin -', this.state.fiat, '-- fiat -', this.state.coin)
-
-    // }
 
     onClickBtn(){
-        return null;
-    }
-
-
-
-
-    onChangeInput(evt) { // valeur de l'input
+        
         this.setState({
-            input: evt.target.value
+            convertionResult: `1 ${this.state.coin} = ${this.state.change} ${this.state.fiat}`
         });
-
     }
 
-    handleChange(change, event) {
-        console.log('handleChange event', event);
-        console.log('handleChange event.target.value', event.target.value);
-        console.log('handleChange change', change);
 
-        // let toChange = this.state.name;
-        // toChange[change] = event.target.value;
+    handleChangeCoin(event) {
         this.setState({
-            name: this.state[change]
+            coin: event.target.value
         });
         
-        console.log('this.state.name', event.target.value)
+        let isDisabled = true;
+        
+        this.state.coin && this.state.fiat ? isDisabled = false : isDisabled = true;
+
+        this.setState({
+            isDisabled
+        })
+
+
+        console.log('components/core/Convert# this.state.coin', this.state.coin)
+
+    }
+
+    handleChangeFiat(event) {
+        console.log('components/core/Convert#handleChange event', event);
+        console.log('components/core/Convert#handleChange event.target.value', event.target.value);
+
+        this.setState({
+            fiat: event.target.value
+        });
+        
+        let isDisabled = true;
+        
+        this.state.coin && this.state.fiat ? isDisabled = false : isDisabled = true;
+
+        this.setState({
+            isDisabled
+        })
+
+        console.log('components/core/Convert#handleChangeFiat event.target.value', event.target.value)
+        console.log('components/core/Convert#handleChangeFiat this.state.fiat', this.state.fiat)
+
     
     }
 
-
-
-
-
-
-
-
-
-
+    componentDidMount(){
+        if ( this.props.coin && this.state.fiat ){
+            Api.getPrice(this.state.coin, this.state.fiat)
+            .then((change) =>{
+                console.log('components/core/Convert#componentWillMount change',change)
+                this.setState({
+                    change
+                });
+            });
+        } else {
+            console.log('pas de conversion')
+            return
+        }
+    }
 
 
     render(){
     
+        console.log('components/core/Convert#Render this.state.value', this.state.value)
+
         return(
 
             <Row>
@@ -109,11 +123,12 @@ class Convert extends React.Component {
                             xl={8}
                         >{/* <Col xs={{ span: 12, order: 'first' }} sm={12} lg={12}> */}
                             <List
-                                default = "bitcoin"
+                                default = "bitcoin" // not used yet
                                 listOf = "coins"
                                 listContent = {this.props.coins}
+                                value={this.state.coin}
                                 // value = {this.state.value}
-                                handleChange = {this.handleChange}
+                                handleChange = {this.handleChangeCoin}
                                 
                             />
                         </Col>
@@ -125,11 +140,12 @@ class Convert extends React.Component {
                             xl={4}
                         >
                             <List
-                                default = "eur"
+                                default = "eur" // not used yet
                                 listOf = "fiats"
                                 listContent = {this.props.fiats}
+                                value={this.state.fiat}
                                 // value = {this.state.value}
-                                handleChange = {this.handleChange}
+                                handleChange = {this.handleChangeFiat}
                             />
 
                         </Col>
@@ -147,7 +163,7 @@ class Convert extends React.Component {
                     <Button
                         variant="secondary"
                         block
-                        disabled={this.state.buttonState}
+                        disabled={this.state.isDisabled}
                         onClick={this.onClickBtn}
                     >
                         convertir
@@ -166,18 +182,18 @@ class Convert extends React.Component {
 
                     >
                         <Card.Body>
-                            <Card.Text as="h5">1 truc = 5 machins</Card.Text>
+                            <Card.Text as="h5">{this.state.convertionResult}</Card.Text>
                         </Card.Body>
                     </Card>
 
                 </Col>
-                <Col xs={12}>
+                {/* <Col xs={12}>
                     <Input
                         handleChange={this.handleChange}
-                        form={this.state.form}
+                        // form={this.state.form}
                     >
                     </Input>
-                </Col>
+                </Col> */}
 
             </Row>
             

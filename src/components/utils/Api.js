@@ -29,6 +29,25 @@ class Api {
         });
     }
     
+
+    getPrice(coin, fiat) {
+
+        const getUrl = `/simple/price${url}?ids=${coin}&vs_currencies=${fiat}`;
+        console.log('components/utils/Api#getPrice getUrl : ', getUrl);
+        
+        return fetch(getUrl)
+        .then( res => res.json() )
+        .then( json => {
+            
+            let result = json[coin][fiat];
+
+            // console.log(`components/utils/Api#getPrice${input} json : `, json);
+            // console.log(`components/utils/Api#getPrice${input} result : `, result);
+            result.sort();
+            return result;
+        });
+
+    }
 //input === 'coins' ? json.map((coin) => {return } ) :
 
 

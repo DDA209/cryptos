@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
     Form,
-    // InputGroup,
+    InputGroup,
 
  } from 'react-bootstrap';
 
@@ -78,16 +78,27 @@ class Input extends React.Component{
             //     //     value={this.props.input}
             //     //     onChange={this.props.onChangeInput}
             //     // />
-            <Form.Group>
-                <Form.Control 
-                    type='text' 
-                    placeholder='enter' 
-                    defaultValue={this.props.form.name}
-                    onChange={this.props.handleChange}
-                >
-                </Form.Control>
-            </Form.Group>
+            <InputGroup  className="input-group mb-3">
 
+                <InputGroup.Prepend>
+                    <InputGroup.Text id="inputCoin">name</InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Group>
+                    <Form.Control 
+                        as = "select"
+                        className = "list"
+                        type='text' 
+                        onChange={this.props.handleChange}
+                    >
+                        <option></option>
+                        <option>{"Didier"}</option>
+                        <option>{"Sarah"}</option>
+                        <option>{"Tempêt"}</option>
+                        <option>{"Cacahuète"}</option>
+                    </Form.Control>
+                        
+                </Form.Group>
+            </InputGroup >
         )
     }
 }

@@ -27,8 +27,9 @@ class List extends React.Component {
             <Form.Control
                 as = "select"
                 className = "list"
-                value={this.props.input}
-                onChange={this.props.onChangeInput}
+                type='text'
+                value={this.props.value}
+                onChange={this.props.handleChange}
             >
                 <option>{""}</option>
 
@@ -51,12 +52,8 @@ class List extends React.Component {
                     <InputGroup.Text id="inputCoin">{label[this.props.listOf]}</InputGroup.Text>
                 </InputGroup.Prepend>
 
-                    {this.renderList()}
-                    
-                    {/* <input type="text"
-                        onChange = { () => this.props.handleChange(this.value) }
-                    ></input> */}
-                
+                {this.renderList()}
+
             </InputGroup >
         )
     }
