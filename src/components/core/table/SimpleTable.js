@@ -10,8 +10,9 @@ class SimpleTable extends React.Component{
             <Table>
                 <tr>
                     <th>{this.props.title}</th>
-                    
-                    {this.props.createNewLine()}
+                    {this.props.contents}
+                    {this.props.table}
+                    {this.props.createNewLine}
 
                 </tr>
             </Table>            

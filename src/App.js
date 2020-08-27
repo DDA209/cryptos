@@ -8,9 +8,7 @@ import {
 import { 
   Navbar,
   Nav,
-  Container,
-  Row,
-  Col
+  Container
 } from 'react-bootstrap';
 
 import HomeContainer from './components/containers/HomeContainer.js'
@@ -37,27 +35,23 @@ class App extends React.Component{
         </Navbar>
 
         <Container fluid>            
-          <Row>
-            <Col xs={12}>
 
-              <Switch>
+            <Switch>
 
-                <Route path="/" exact>
-                  <HomeContainer />
-                </Route>
+              <Route path="/" exact>
+                <HomeContainer />
+              </Route>
 
-                <Route path="/wallets">
-                  <WalletsContainer />
-                </Route>
+              <Route path="/wallets">
+                <WalletsContainer />
+              </Route>
 
-                <Route path="/convert">
-                  <ConvertContainer />
-                </Route>
+              <Route path="/convert">
+                <ConvertContainer />
+              </Route>
 
-              </Switch>
+            </Switch>
 
-            </Col>
-          </Row>
         </Container>
 
       </Router>

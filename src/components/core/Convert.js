@@ -17,85 +17,82 @@ class Convert extends React.Component {
             coin: '',
             fiat: '',
             value: '',
-            input: '',
+            // input: '',
             convertionResult: '...',
             
         };
 
-        console.log('components/core/Convert#constructor coin -', this.state.fiat, '-- fiat -', this.state.coin)
-        console.log('components/core/Convert#constructor input -', this.state.input)
+        // console.log('components/core/Convert#constructor coin -', this.state.fiat, '-- fiat -', this.state.coin)
         this.handleChangeCoin = this.handleChangeCoin.bind(this);
         this.handleChangeFiat = this.handleChangeFiat.bind(this);
         this.onClickBtn = this.onClickBtn.bind(this);
     }
 
     onClickBtn(){
-        
-        this.setState({
-            convertionResult: `1 ${this.state.coin} = ${this.state.change} ${this.state.fiat}`
-        });
+        // this.convert();
+
+        if ( this.state.coin !== '' && this.state.fiat !== '' ){
+
+            Api.getPrice(this.state.coin, this.state.fiat)
+            .then((change) =>{
+                this.setState({
+                    convertionResult: `1 ${this.state.coin} = ${change} ${this.state.fiat}`
+                });
+
+            });
+        } else {
+            console.log('pas de conversion')
+            return
+        }
+
+        // this.setState({
+        //     convertionResult: `1 ${this.state.coin} = ${this.state.change} ${this.state.fiat}`
+        // });
     }
 
 
     handleChangeCoin(event) {
+
+        console.log('components/core/Convert#handleChangeCoin() coin')
+
         this.setState({
             coin: event.target.value
         });
         
         let isDisabled = true;
-        
         this.state.coin && this.state.fiat ? isDisabled = false : isDisabled = true;
 
         this.setState({
             isDisabled
         })
 
-
-        console.log('components/core/Convert# this.state.coin', this.state.coin)
-
     }
 
     handleChangeFiat(event) {
-        console.log('components/core/Convert#handleChange event', event);
-        console.log('components/core/Convert#handleChange event.target.value', event.target.value);
+        // console.log('components/core/Convert#handleChange event', event);
+        // console.log('components/core/Convert#handleChange event.target.value', event.target.value);
+
+        console.log('components/core/Convert#handleChangeCoin() fiat')
 
         this.setState({
             fiat: event.target.value
         });
         
         let isDisabled = true;
-        
         this.state.coin && this.state.fiat ? isDisabled = false : isDisabled = true;
 
         this.setState({
             isDisabled
         })
 
-        console.log('components/core/Convert#handleChangeFiat event.target.value', event.target.value)
-        console.log('components/core/Convert#handleChangeFiat this.state.fiat', this.state.fiat)
+        // console.log('components/core/Convert#handleChangeFiat event.target.value', event.target.value)
+        // console.log('components/core/Convert#handleChangeFiat this.state.fiat', this.state.fiat)
+    }
 
     
-    }
-
-    componentDidMount(){
-        if ( this.props.coin && this.state.fiat ){
-            Api.getPrice(this.state.coin, this.state.fiat)
-            .then((change) =>{
-                console.log('components/core/Convert#componentWillMount change',change)
-                this.setState({
-                    change
-                });
-            });
-        } else {
-            console.log('pas de conversion')
-            return
-        }
-    }
-
-
     render(){
     
-        console.log('components/core/Convert#Render this.state.value', this.state.value)
+        // console.log('components/core/Convert#Render this.state.value', this.state.value)
 
         return(
 

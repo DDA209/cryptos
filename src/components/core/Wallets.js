@@ -41,6 +41,13 @@ class Wallets extends React.Component {
                     
             }
         }
+
+        this.createNewLine = this.createNewLine.bind(this)
+    }
+
+
+    createNewLine(){
+        return
     }
 
 
@@ -59,38 +66,36 @@ class Wallets extends React.Component {
                     className="mb-3"
                 />
 
-                <Row>
 
+                <Col // Colonne immuable listant 
+                    xs={6}
+                    sm={5}
+                    md={4}
+                    lg={3}
+                    xl={2}
+                >
+                    <SimpleTable
+                        title = {this.state.table.coins.title}
+                        coins = {this.state.table.coins.coins}
+                        createNewLine = {this.state.createNewLine}
 
-                    <Col // Colonne immuable listant 
-                        xs={6}
-                        sm={5}
-                        md={4}
-                        lg={3}
-                        xl={2}
-                    >
-                        <SimpleTable
-                            contents = "coins"
-                            table = {this.state.table.coins}
+                    />blublu
+                    
+                </Col>
+                <Col // Colonne immuable listant 
+                    xs={6}
+                    sm={7}
+                    md={8}
+                    lg={9}
+                    xl={10}
+                >
+                    <MainTable
+                        // table = {this.state.table.wallets}
+                        createNewLine = {this.state.createNewLine}
 
-                        />blublu
-                        
-                    </Col>
-                    <Col // Colonne immuable listant 
-                        xs={6}
-                        sm={7}
-                        md={8}
-                        lg={9}
-                        xl={10}
-                    >
-                        <MainTable
-                            contents = "wallet"
-                            table = {this.state.table.wallets}
+                    />blibli
 
-                        />blibli
-
-                    </Col>
-                </Row>
+                </Col>
                 
             </Row>
 

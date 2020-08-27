@@ -11,40 +11,50 @@ class ConvertContainer extends React.Component {
         this.state = {
             coins: [],
             fiats: [],
-            convertion: ''
+            // change: ''
         }
     }
 
     componentDidMount(){
 
         console.log('components/containers/ConvertContainer #ComponentDidMount');
-     
-        Api.getList('fiats')
-        .then((list) => {
-            // console.log('components/containers/ConvertContainer #ComponentDidMount fiats', fiats);
-            this.setState({
-                "fiats": list
-            });
-            // console.log('components/containers/ConvertContainer #ComponentDidMount this.state.fiats', this.state.fiats);
-        })
         
-        Api.getList('coins')
-        .then((list) => {
-            // console.log('components/containers/ConvertContainer #ComponentDidMount coins.symbol', coins);
-            this.setState({
-                "coins": list
+        if (this.state.coins.length === 0){
+
+            Api.getList('fiats')
+            .then((list) => {
+                // console.log('components/containers/ConvertContainer #ComponentDidMount fiats', fiats);
+                this.setState({
+                    "fiats": list
+                });
+                // console.log('components/containers/ConvertContainer #ComponentDidMount this.state.fiats', this.state.fiats);
             });
-            // console.log('components/containers/ConvertContainer #ComponentDidMount this.state.coins', this.state.coins);
-        })
+            
+        };
+
+        if (this.state.coins.length === 0){
+
+            Api.getList('coins')
+            .then((list) => {
+                // console.log('components/containers/ConvertContainer #ComponentDidMount coins.symbol', coins);
+                this.setState({
+                    "coins": list
+                });
+                // console.log('components/containers/ConvertContainer #ComponentDidMount this.state.coins', this.state.coins);
+            });
+            
+        };            
 
     }
+
+    
 
     render(){
         return(
             <Convert
             coins = {this.state.coins}
             fiats = {this.state.fiats}
-            convertion = {this.state.conversion}
+            // change = {this.state.change}
             />
         )
     }
