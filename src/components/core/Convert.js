@@ -9,6 +9,7 @@ import List from '../core/list/List';
 import Api from '../utils/Api';
 
 class Convert extends React.Component {
+
     constructor(props){
         super(props)
 
@@ -50,7 +51,6 @@ class Convert extends React.Component {
         // });
     }
 
-
     handleChangeCoin(event) {
 
         console.log('components/core/Convert#handleChangeCoin() coin')
@@ -89,7 +89,6 @@ class Convert extends React.Component {
         // console.log('components/core/Convert#handleChangeFiat this.state.fiat', this.state.fiat)
     }
 
-    
     render(){
     
         // console.log('components/core/Convert#Render this.state.value', this.state.value)
@@ -108,7 +107,7 @@ class Convert extends React.Component {
                     xs={{ span: 12, order: 2 }}
                     md={10}
                     lg={6}
-                    xl={5}
+                    xl={7}
                 >
 
                     <Row>
@@ -169,9 +168,10 @@ class Convert extends React.Component {
                 </Col>
 
                 <Col
-                    xs={{ span: 6, order: "last" }}
-                    md={{ span: 4, offset: 4 }}
-                    lg={{ span: 3, offset: 0, order: 1 }}
+                    xs={{ span: 9, order: "last" }}
+                    sm={{ span: 7, order: "last" }}
+                    md={{ span: 6, offset: 3 }}
+                    lg={{ span: 4, offset: 0, order: 1 }}
                     xl={{ span: 3, offset: 0, order: 1 }}
                 >
                 

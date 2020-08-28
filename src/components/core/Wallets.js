@@ -5,7 +5,7 @@ import {
  } from 'react-bootstrap';
 
 import SimpleTable from './table/SimpleTable';
-import MainTable from './table/SimpleTable';
+import MainTable from './table/MainTable';
 
 class Wallets extends React.Component {
 
@@ -23,19 +23,19 @@ class Wallets extends React.Component {
                 wallets: [
                     {
                         title: 'Binance',
-                        values: [ 0, 0, 0 ] 
+                        values: [ 0.4, 8, 40 ] 
                     },
                     {
                         title: 'Coinhouse',
-                        values: [ 0, 0, 0 ] 
-                    },
-                    {
-                        title: 'Coinbase',
-                        values: [ 0, 0, 0 ] 
+                        values: [ 0.1, 2, 10 ] 
                     },
                     {
                         title: 'Wirex',
-                        values: [ 0, 0, 0 ] 
+                        values: [ 0.3, 6, 30 ] 
+                    },
+                    {
+                        title: 'Coinbase',
+                        values: [ 0.2, 4, 20 ] 
                     }
                 ]
                     
@@ -67,34 +67,31 @@ class Wallets extends React.Component {
                 />
 
 
-                <Col // Colonne immuable listant 
+                <Col // Colonne immuable listant les cryptos
                     xs={6}
                     sm={5}
                     md={4}
                     lg={3}
-                    xl={2}
                 >
                     <SimpleTable
                         title = {this.state.table.coins.title}
                         coins = {this.state.table.coins.coins}
-                        createNewLine = {this.state.createNewLine}
+                        // createNewLine = {this.state.createNewLine}
 
-                    />blublu
-                    
+                    />
+                     
                 </Col>
-                <Col // Colonne immuable listant 
+                <Col
                     xs={6}
                     sm={7}
                     md={8}
                     lg={9}
-                    xl={10}
                 >
                     <MainTable
-                        // table = {this.state.table.wallets}
-                        createNewLine = {this.state.createNewLine}
+                            table = {this.state.table.wallets}
+                            // createNewLine = {this.state.createNewLine}
 
-                    />blibli
-
+                    />
                 </Col>
                 
             </Row>
