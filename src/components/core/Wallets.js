@@ -22,39 +22,83 @@ class Wallets extends React.Component {
                 },
                 wallets: [
                     {
-                        title: 'Binance',
+                        title: 'Binance', //https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api.md#account-information-user_data
                         values: [ 0.4, 8, 40 ] 
                     },
                     {
                         title: 'Coinhouse',
-                        values: [ 0.1, 2, 10 ] 
+                        values: [ 0.1, 2, 0 ] 
                     },
                     {
                         title: 'Wirex',
-                        values: [ 0.3, 6, 30 ] 
+                        values: [ 0.3, 0, 0 ] 
                     },
                     {
                         title: 'Coinbase',
+                        values: [ 0.2, 4, 0 ] 
+                    },
+                    {
+                        title: 'Uphold',
+                        values: [ 0.2, 8, 0 ] 
+                    },
+                    {
+                        title: 'Keplerk',
+                        values: [ 1.2, 0.4, 5 ] 
+                    },
+                    {
+                        title: 'Cryptonator',
+                        values: [ 0.25, 4, 11 ] 
+                    },
+                    {
+                        title: 'Coinomi',
+                        values: [ 0.32, 4, 10 ] 
+                    },
+                    {
+                        title: 'Shapeshift',
+                        values: [ 0.2, 11, 0 ] 
+                    },
+                    {
+                        title: 'Bitpay',
+                        values: [ 0.2, 0, 0 ] 
+                    },
+                    {
+                        title: 'Bittrex',
+                        values: [ 0.9, 0, 0 ] 
+                    },
+                    {
+                        title: 'Mycellium',
                         values: [ 0.2, 4, 20 ] 
+                    },
+                    {
+                        title: 'Liquid',
+                        values: [ 0.7, 4, 15 ] 
+                    },
+                    {
+                        title: 'NiceHash',
+                        values: [ 0.05, 4, 19 ] 
+                    },
+                    {
+                        title: 'Kraken',
+                        values: [ 20.1, 463, 0 ] 
+                    },
+                    {
+                        title: 'EtoroCoinbase',
+                        values: [ 0, 0, 0 ] 
                     }
                 ]
                     
-            }
+            },
+            fiat: 'eur'
         }
-
-        this.createNewLine = this.createNewLine.bind(this)
     }
 
 
-    createNewLine(){
-        return
-    }
 
 
     render(){
         return(
 
-            <Row>
+            <Row noGutters={true}>
 
                 <Col xs={12}>
                     <h2>Portefeuilles crypto</h2>
@@ -68,6 +112,7 @@ class Wallets extends React.Component {
 
 
                 <Col // Colonne immuable listant les cryptos
+                    // xs="auto"
                     xs={6}
                     sm={5}
                     md={4}
@@ -76,12 +121,13 @@ class Wallets extends React.Component {
                     <SimpleTable
                         title = {this.state.table.coins.title}
                         coins = {this.state.table.coins.coins}
-                        // createNewLine = {this.state.createNewLine}
+                        fiat = {this.state.fiat}
 
                     />
                      
                 </Col>
                 <Col
+                    // xs="auto"
                     xs={6}
                     sm={7}
                     md={8}
@@ -89,7 +135,7 @@ class Wallets extends React.Component {
                 >
                     <MainTable
                             table = {this.state.table.wallets}
-                            // createNewLine = {this.state.createNewLine}
+                            coins = {this.state.table.coins.coins}
 
                     />
                 </Col>

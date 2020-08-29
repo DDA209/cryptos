@@ -8,12 +8,12 @@ class SimpleTable extends React.Component{
 
     render(){
 
-        console.log('this.props.coins', this.props.coins);
-        console.log('this.props.title', this.props.title);
+        // console.log('this.props.coins', this.props.coins);
+        // console.log('this.props.title', this.props.title);
 
         return(
 
-            <Table>
+            <Table striped bordered hover variant="light">
                 <thead>
                     <tr>
                         <th>{this.props.title}</th>
@@ -21,18 +21,23 @@ class SimpleTable extends React.Component{
                 </thead>
                 <tbody>
                     
-                        {this.props.coins.map((coin, index) => {
-                            console.log('in map', coin)
-                            return(
-                                <tr key={index}>
-                                    <th>
-                                        {coin}
-                                    </th>
-                                </tr>
-                            );
-                        })}
-                        {this.props.createNewLine}
-                   
+                    {this.props.coins.map((coin, index) => {
+                        // console.log('in map', coin)
+                        return(
+                            <tr key={index}>
+                                <td>
+                                    {coin}
+                                </td>
+                            </tr>
+                        );
+                    })}
+
+                    <tr>
+                        <th>
+                            Total en {this.props.fiat}
+                        </th>
+                    </tr>
+                        
                 </tbody>
             </Table> 
       

@@ -1,4 +1,5 @@
 import React from 'react';
+// import Spinner from '../image/spinner.svg';
 
 class Home extends React.Component {
 

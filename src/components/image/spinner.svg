@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="102.5mm"
+   height="102.5mm"
+   viewBox="0 0 102.5 102.5"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="spinner.svg">
+  <defs
+     id="defs2">
+    <inkscape:path-effect
+       effect="bend_path"
+       id="path-effect5712"
+       is_visible="true"
+       bendpath="m 26.19375,213.25938 c -705.72965,174.55879 865.7183,132.66391 119.59167,0"
+       prop_scale="1.0475265"
+       scale_y_rel="false"
+       vertical="false"
+       bendpath-nodetypes="cc" />
+    <inkscape:path-effect
+       effect="bend_path"
+       id="path-effect5709"
+       is_visible="true"
+       bendpath="M 208.14062,449.00391 H 576.125"
+       prop_scale="1"
+       scale_y_rel="false"
+       vertical="false" />
+    <inkscape:path-effect
+       effect="bend_path"
+       id="path-effect5709-0"
+       is_visible="true"
+       bendpath="M 208.14062,449.00391 H 576.125"
+       prop_scale="1"
+       scale_y_rel="false"
+       vertical="false" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.54740759"
+     inkscape:cx="-307.33717"
+     inkscape:cy="150.24133"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1096"
+     inkscape:window-x="1016"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:object-paths="true"
+     inkscape:snap-nodes="true"
+     inkscape:snap-global="false"
+     inkscape:snap-bbox="true"
+     inkscape:snap-to-guides="false"
+     inkscape:snap-others="false"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-grids="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-194.5)">
+    <path
+       transform="matrix(0.24605678,0,0,0.24605678,-45.162314,134.04272)"
+       style="display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:23.05511856;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 415.69437,279.18615 c 4.4e-4,-10.4375 -8.46092,-18.89753 -18.92182,-18.89709 -104.244,6e-4 -188.73132,84.48816 -188.73193,188.70899 -4.6e-4,104.2216 84.48618,188.70981 188.70849,188.7207 99.01119,0.003 179.27536,-80.26098 179.27491,-179.27148 0.16,-46.05945 -19.22347,-125.77249 -114.97039,-166.82227 82.27841,34.42425 106.02682,111.4563 105.53487,157.37305 4.6e-4,93.79937 -76.03929,169.84017 -169.83939,169.84765 -88.589,0.008 -160.40233,-71.8102 -160.40192,-160.39843 -4.1e-4,-88.58826 71.8139,-160.36262 160.42537,-160.36329 10.26649,-0.19322 18.83861,-6.99319 18.92181,-18.89783 z"
+       id="rect827-8-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccc"
+       inkscape:path-effect="#path-effect5709-0"
+       inkscape:original-d="m 415.79492,279.18615 c 4.4e-4,-10.4375 -8.46094,-18.89753 -18.92187,-18.89709 -104.24428,6e-4 -188.73182,84.48816 -188.73243,188.70899 -4.6e-4,104.2216 84.4864,188.70981 188.70899,188.7207 99.01145,0.003 179.27584,-80.26098 179.27539,-179.27148 0.16,-46.05945 -19.22352,-125.77249 -114.9707,-166.82227 82.27863,34.42425 106.0271,111.4563 105.53515,157.37305 4.6e-4,93.79937 -76.03949,169.84017 -169.83984,169.84765 -88.58923,0.008 -160.40275,-71.8102 -160.40234,-160.39843 -4.1e-4,-88.58826 71.81409,-160.36262 160.42579,-160.36329 10.26652,-0.19322 18.83866,-6.99319 18.92186,-18.89783 z"
+       inkscape:label="spinner" />
+  </g>
+</svg>
