@@ -91,10 +91,7 @@ class Input extends React.Component{
                         onChange={this.props.handleChange}
                     >
                         <option></option>
-                        <option>{"Didier"}</option>
-                        <option>{"Sarah"}</option>
-                        <option>{"Tempêt"}</option>
-                        <option>{"Cacahuète"}</option>
+
                     </Form.Control>
                         
                 </Form.Group>

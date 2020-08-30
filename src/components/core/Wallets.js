@@ -1,3 +1,5 @@
+// Called by components/containers/WalletsContainer.js
+
 import React from 'react';
 import { 
     Row,
@@ -17,7 +19,7 @@ class Wallets extends React.Component {
                 coins: {
                     title: 'Coin / token',
                     coins: [
-                        'Bitcoin','Ethereum','Tezos'
+                        'Bitcoin', 'Ethereum', 'Tezos', 'Ripple', 'ZCash', 'Ethereum Classic'
                     ]
                 },
                 wallets: [
@@ -82,8 +84,8 @@ class Wallets extends React.Component {
                         values: [ 20.1, 463, 0 ] 
                     },
                     {
-                        title: 'EtoroCoinbase',
-                        values: [ 0, 0, 0 ] 
+                        title: 'Etoro',
+                        values: [] 
                     }
                 ]
                     

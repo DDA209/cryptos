@@ -1,3 +1,5 @@
+// Called by components/containers/Wallets.js
+
 import React from 'react';
 import { 
     Table
@@ -13,7 +15,7 @@ class SimpleTable extends React.Component{
 
         return(
 
-            <Table striped bordered hover variant="light">
+            <Table striped bordered variant="light">
                 <thead>
                     <tr>
                         <th>{this.props.title}</th>

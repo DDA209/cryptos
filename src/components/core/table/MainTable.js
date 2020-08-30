@@ -1,3 +1,5 @@
+// Called by components/containers/Wallets.js
+
 import React from 'react';
 import { 
     Table,
@@ -8,50 +10,9 @@ import {
 class MainTable extends React.Component{
 
 
-
-
-    // renderTable(){
-    //     return(
-    //         <Row>
-    //             {this.props.table.map((wallet, index) => {
-    //                 return(
-    //                     <Col xs="auto" key={index}>
-    //                         <Table>
-                        
-
-    //                             <thead>
-    //                                 <tr>
-    //                                     <th>{wallet.title}</th>
-    //                                 </tr>
-    //                             </thead>
-                            
-
-                        
-    //                             <tbody>
-                                    
-    //                                 {wallet.values.map((value, index) => {
-    //                                     console.log('in map', value)
-    //                                     return(
-    //                                         <tr key={index}>
-    //                                             <td>
-    //                                                 {Number.parseFloat(value).toFixed(8)}
-    //                                             </td>
-    //                                         </tr>
-    //                                     );
-    //                                 })}
-                                
-    //                             </tbody>
-    //                         </Table>
-    //                     </Col>
-    //                 );
-    //             })}
-
-
-    //         </Row>
-    //     );
-
-    // }
-
+    /**
+     * Rendu de la ligne titre de la table des wallets
+     */
     renderTableTitles(){
         // console.log('render head main table')
         this.props.table.map((wallet, index) => {
@@ -62,6 +23,9 @@ class MainTable extends React.Component{
         });
     }
 
+    /**
+     * Rendu des lignes comptables de la table des wallets (solde pour chaque valeur et totaux)
+     */
     renderTableBody(){
         console.log('components/core/table/MainTable#renderTableBody this.props.coins.length',this.props.coins.length);
 
@@ -126,7 +90,7 @@ class MainTable extends React.Component{
 
         <Row>
             <Col>
-                <Table responsive="xl" striped bordered hover variant="secondary">
+                <Table responsive striped bordered variant="secondary">
                     <thead>
                         <tr>
                             {this.props.table.map((wallet, index) => {

@@ -1,3 +1,5 @@
+// Called by components/containers/HomeContainer.js
+
 import React from 'react';
 // import Spinner from '../image/spinner.svg';
 

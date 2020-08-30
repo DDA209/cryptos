@@ -1,3 +1,5 @@
+// Called by components/containers/ConvertContainer.js
+
 import React from 'react';
 import { 
     Button,
@@ -33,7 +35,9 @@ class Convert extends React.Component {
         // this.convert();
 
         if ( this.state.coin !== '' && this.state.fiat !== '' ){
-
+            this.setState({
+                convertionResult: 'Vérification du prix en cours'
+            });
             Api.getPrice(this.state.coin, this.state.fiat)
             .then((change) =>{
                 this.setState({
