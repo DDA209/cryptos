@@ -9,8 +9,8 @@
 #include <ButtonConstants.au3>
 
 ; Dimensions de la fenêtre
-Const $winWdt = 600
-Const $winHei = 100
+Const $winWdt = 660
+Const $winHei = 150
 Const $winBrd = 10
 
 ; Définition des bouton
@@ -45,6 +45,7 @@ GUICreate("Chiffreur de clé", $winWdt, $winHei)
 
 Local $charLen
 Local $charsConcat = []
+Local $authorizedChars = ""
 
 ; Mise en place des boutons
 Const $generate = GUICtrlCreateButton("Chiffrer", $btn1BrdLft, $btnBdrTop, $btnWdt, $btnHei)
@@ -53,19 +54,28 @@ Const $quit = GUICtrlCreateButton ( "Fermer", $btn1BrdLft, $btnBdrTop + 2 * ($bt
 
 ; Input clé
 GUICtrlCreateLabel("Entrer la valeur à chiffrer : ", $winBrd, $lblBrdTop) ; chiffreur de clé
-Local $toCrypt = (GUICtrlCreateInput("Elémént à chiffrer", $inpChkLfToCrypt, $inpBrdTop, $inpCryptWdt, $inpHei)) ; chiffreur de clé
+Local $toCrypt = (GUICtrlCreateInput("", $inpChkLfToCrypt, $inpBrdTop, $inpCryptWdt, $inpHei)) ; chiffreur de clé
 
+AuthorizedChars()
+GUICtrlCreateLabel("Caractères autorisées : ", $winBrd, $lblBrdTop + ( $inpHei + $inpLblIntSpc ) )
+GUICtrlCreateLabel($authorizedChars, $winBrd, $lblBrdTop + ( $inpHei + $inpLblIntSpc ) * 2 )
+GuiCt
 ; Input chiffrement
-GUICtrlCreateLabel("Clé pour le chiffrement : ", $winBrd, $lblBrdTop + $inpHei + $inpLblIntSpc ) ; chiffreur de clé
-Local $pin = (GUICtrlCreateInput("clé pour chiffrage", $inpChkLfPin, $inpBrdTop + $inpHei + $inpLblIntSpc, $inpPinWdt, $inpHei)) ; chiffreur de clé
+GUICtrlCreateLabel("Clé pour le chiffrement : ", $winBrd, $lblBrdTop + ( $inpHei + $inpLblIntSpc ) * 3 ) ; chiffreur de clé
+Local $pin = (GUICtrlCreateInput("", $inpChkLfPin, $inpBrdTop + ( $inpHei + $inpLblIntSpc ) * 3 , $inpPinWdt, $inpHei)) ; chiffreur de clé
 
 ; Output résultat
-GUICtrlCreateLabel("Clé à enregistrer : ", $winBrd, $lblBrdTop + ( $inpHei + $inpLblIntSpc ) * 2 ) ; chiffreur de clé
-Local $display = (GUICtrlCreateInput ("", $inpChkLfResult, $inpBrdTop + ( $inpHei + $inpLblIntSpc ) * 2 , $inpResultWdt, $inpHei)) ; chiffreur de clé
+GUICtrlCreateLabel("Clé à enregistrer : ", $winBrd, $lblBrdTop + ( $inpHei + $inpLblIntSpc ) * 4 ) ; chiffreur de clé
+Local $display = (GUICtrlCreateInput ("", $inpChkLfResult, $inpBrdTop + ( $inpHei + $inpLblIntSpc ) * 4 , $inpResultWdt, $inpHei)) ; chiffreur de clé
 
 Local $extrac = ""
 
 App() ; démarrage de l'application
+
+
+
+
+
 
 Func App()
 
@@ -115,3 +125,18 @@ Func Export()
    MsgBox(0x40,"Chiffrage exporté", "Le chiffrage a été le fichier : " & $listFile)
 
 EndFunc   ;==>Export
+
+Func AuthorizedChars ()
+
+   $authorizedChars = ""
+
+   For $i = 33 to 126 Step 1
+	  $newChar = Chr($i)
+	  $authorizedChars = $authorizedChars & $newChar
+   Next
+
+   MsgBox(0,"Caractères autorisés", $authorizedChars)
+
+EndFunc ;==> AuthorizedChars
+
+

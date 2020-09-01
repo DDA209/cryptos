@@ -7,7 +7,7 @@ import {
     Col,
     Card
 } from 'react-bootstrap';
-import List from '../core/list/List';
+import List from './list/List';
 import Api from '../utils/Api';
 
 class Convert extends React.Component {
