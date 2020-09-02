@@ -1,6 +1,8 @@
 # Cryptos
 
-Visulaisation des portefeuilles de crypto-actifs développé en React
+Convertisseur crypto-actifs et visulaisation de portefeuilles.
+- Développé en React
+- API CoinCecko
 
 ## Demo
 
