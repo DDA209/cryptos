@@ -34,11 +34,11 @@ Const $lblBrdTop = $inpBrdTop + 3
 Const $dspBrdTop = $btnNbr * $btnHei + ($btnNbr - 1) * $btnIntSpc + 2 * $winBrd
 Const $inpLblIntSpc = 3
 Const $inpChkLfToCrypt = $winBrd + 125
-Const $inpChkLfPin = $winBrd + 115
-Const $inpChkLfResult = $winBrd + 86
+Const $inpChkLfKey = $winBrd + 115
+Const $inpChkLfResult = $winBrd + 60
 Const $inpCryptWdt = $winWdt - (2 * $winBrd) - $inpChkLfToCrypt - $btnWdt
 Const $inpResultWdt = $winWdt - (2 * $winBrd) - $inpChkLfResult - $btnWdt
-Const $inpPinWdt = 120
+Const $inpKeyWdt = $winWdt - (2 * $winBrd) - $inpChkLfKey - $btnWdt
 
 ; Création de la fenêtre
 GUICreate("Chiffreur de clé", $winWdt, $winHei)
@@ -52,20 +52,20 @@ Const $generate = GUICtrlCreateButton("Chiffrer", $btn1BrdLft, $btnBdrTop, $btnW
 Const $export = GUICtrlCreateButton("Export du résultat", $btn1BrdLft, $btnBdrTop + 1 * ($btnIntSpc + $btnHei), $btnWdt, $btnHei)
 Const $quit = GUICtrlCreateButton ( "Fermer", $btn1BrdLft, $btnBdrTop + 2 * ($btnIntSpc + $btnHei), $btnWdt,$btnHei )
 
-; Input clé
+; Input à chiffrer
 GUICtrlCreateLabel("Entrer la valeur à chiffrer : ", $winBrd, $lblBrdTop) ; chiffreur de clé
 Local $toCrypt = (GUICtrlCreateInput("", $inpChkLfToCrypt, $inpBrdTop, $inpCryptWdt, $inpHei)) ; chiffreur de clé
 
 AuthorizedChars()
 GUICtrlCreateLabel("Caractères autorisées : ", $winBrd, $lblBrdTop + ( $inpHei + $inpLblIntSpc ) )
-GUICtrlCreateLabel($authorizedChars, $winBrd, $lblBrdTop + ( $inpHei + $inpLblIntSpc ) * 2 )
-GuiCt
+GUICtrlCreateLabel($authorizedChars, $winBrd, $lblBrdTop - 5 + ( $inpHei + $inpLblIntSpc ) * 2 )
+
 ; Input chiffrement
 GUICtrlCreateLabel("Clé pour le chiffrement : ", $winBrd, $lblBrdTop + ( $inpHei + $inpLblIntSpc ) * 3 ) ; chiffreur de clé
-Local $pin = (GUICtrlCreateInput("", $inpChkLfPin, $inpBrdTop + ( $inpHei + $inpLblIntSpc ) * 3 , $inpPinWdt, $inpHei)) ; chiffreur de clé
+Local $key = (GUICtrlCreateInput("", $inpChkLfKey, $inpBrdTop + ( $inpHei + $inpLblIntSpc ) * 3 , $inpKeyWdt, $inpHei)) ; chiffreur de clé
 
 ; Output résultat
-GUICtrlCreateLabel("Clé à enregistrer : ", $winBrd, $lblBrdTop + ( $inpHei + $inpLblIntSpc ) * 4 ) ; chiffreur de clé
+GUICtrlCreateLabel("Clé chiffrée : ", $winBrd, $lblBrdTop + ( $inpHei + $inpLblIntSpc ) * 4 ) ; chiffreur de clé
 Local $display = (GUICtrlCreateInput ("", $inpChkLfResult, $inpBrdTop + ( $inpHei + $inpLblIntSpc ) * 4 , $inpResultWdt, $inpHei)) ; chiffreur de clé
 
 Local $extrac = ""
@@ -85,9 +85,9 @@ Func App()
 
 			Case $generate
 				If GUICtrlRead($toCrypt) <> "" Then
-					Crypt()  ; Génération d'un mot de passe
+					Crypt(GUICtrlRead($toCrypt))  ; Génération d'un mot de passe
 				Else
-					MsgBox(0, "Erreur de saisie", "Veuillez entrer une valeur entre 1 et 1000", 0, 0x10)
+					MsgBox(0, "Erreur de saisie", "Veuillez saisir une clé de décodage", 0, 0x10)
 				EndIf
 
 
@@ -97,7 +97,7 @@ Func App()
 				;;;;;;;ClipPut($finalPW) ; Enregistre dans le presse papier
 
 			Case $export
-				Export() ; Récupération de la liste de mots de passes
+				Export() ; Récupération de la valeur chiffrée
 
 			Case $GUI_EVENT_CLOSE
 				ExitLoop ; Permet de quitter l'application
@@ -111,9 +111,48 @@ Func App()
 
 EndFunc   ;==>App
 
-Func Crypt()
+Func Crypt($toCalc)
 
-   MsgBox(0,"Chiffrage", "En travaux...")
+	Local $arrToCalc = StringSplit($toCalc, "") ; Input des caractères à chiffrer splité dans un array de caractère
+	Local $arrNums = [] ; transformation en codes ASCII de chaque caractère
+	Local $arrTransform = [] ; mise en place d'un calcul pour changer le code ASCII du caractère
+	Local $arrResult = [] ; remise en caratère à partir du nouveau code ASCII
+	Local $result = "" ; chaîne de caractères chiffrée
+
+	Local $arrKey = StringSplit($key, "")
+	Local $keyLevel1 = 0
+	Local $keyLevel2 = 0
+	Local $keyLevel3 = 0
+	Local $keyLevel4 = 0
+
+	For $i = 1 To $arrKey[0] step 4
+		$keyLevel1 = Int(Asc($arrKey[$i+0])) + $keyLevel1
+		If $i+1 <= $arrKey[0] Then
+			$keyLevel2 = Int(Asc($arrKey[$i+1])) + $keyLevel2
+		EndIf
+		If $i+2 <= $arrKey[0] Then
+			$keyLevel3 = Int(Asc($arrKey[$i+2])) + $keyLevel3
+		EndIf
+		If $i+3 <= $arrKey[0] Then
+			$keyLevel4 = Int(Asc($arrKey[$i+3])) + $keyLevel4
+		EndIf
+
+
+	Next
+
+		MsgBox(0,"Niveaux de clés", "Niveau 1 : " & $keyLevel1 & @CRLF & "Niveau 2 : " & $keyLevel2 & @CRLF & "Niveau 3 : " & $keyLevel3 & @CRLF & "Niveau 4 : " & $keyLevel4 & @CRLF & @CRLF & Int(Asc($arrKey[2]))+1000 )
+
+
+	For $i = 0 To $arrToCalc[0] step 1
+		$arrTransform[$i] = Asc($arrToCalc[$i])
+	Next
+
+
+
+   MsgBox(0,"Chiffrage", "En travaux... " & $arrToCalc[0])
+
+
+
 
 EndFunc   ;==>Crypt
 
@@ -134,8 +173,6 @@ Func AuthorizedChars ()
 	  $newChar = Chr($i)
 	  $authorizedChars = $authorizedChars & $newChar
    Next
-
-   MsgBox(0,"Caractères autorisés", $authorizedChars)
 
 EndFunc ;==> AuthorizedChars
 

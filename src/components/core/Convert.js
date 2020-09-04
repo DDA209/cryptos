@@ -10,7 +10,13 @@ import {
 import List from '../core/list/List';
 import Api from '../utils/Api';
 
+
+
+
 class Convert extends React.Component {
+
+
+
 
     constructor(props){
         super(props)
@@ -20,10 +26,11 @@ class Convert extends React.Component {
             coin: '',
             fiat: '',
             value: '',
-            // input: '',
             convertionResult: '...',
             
         };
+
+
 
         // console.log('components/core/Convert#constructor coin -', this.state.fiat, '-- fiat -', this.state.coin)
         this.handleChangeCoin = this.handleChangeCoin.bind(this);
@@ -100,6 +107,8 @@ class Convert extends React.Component {
     render(){
     
         // console.log('components/core/Convert#Render this.state.value', this.state.value)
+        let inputCoinValue = 1234;
+        let inputFiatValue = 5678;
 
         return(
 
@@ -122,15 +131,16 @@ class Convert extends React.Component {
 
                         <Col
                             xs={{ span: 12, order: "'first" }}
-                            sm={8}
+                            sm={6}
                             lg={12}
-                            xl={8}
+                            xl={6}
                         >{/* <Col xs={{ span: 12, order: 'first' }} sm={12} lg={12}> */}
                             <List
                                 default = "bitcoin" // not used yet
                                 listOf = "coins"
                                 listContent = {this.props.coins}
-                                value={this.state.coin}
+                                choice={this.state.coin}
+                                value={inputCoinValue}
                                 // value = {this.state.value}
                                 handleChange = {this.handleChangeCoin}
                                 
@@ -139,15 +149,16 @@ class Convert extends React.Component {
 
                         <Col
                             xs={{ span: 12, order: 'last' }}
-                            sm={4}
+                            sm={6}
                             lg={12}
-                            xl={4}
+                            xl={6}
                         >
                             <List
                                 default = "eur" // not used yet
                                 listOf = "fiats"
                                 listContent = {this.props.fiats}
-                                value={this.state.fiat}
+                                choice={this.state.fiat}
+                                value={inputFiatValue}
                                 // value = {this.state.value}
                                 handleChange = {this.handleChangeFiat}
                             />

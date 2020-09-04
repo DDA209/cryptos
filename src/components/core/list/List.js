@@ -4,13 +4,15 @@ import React from 'react';
 import { 
     Form,
     InputGroup,
+    FormControl
  } from 'react-bootstrap';
 
 
 const label = {
-    coins: 'Crypto-monnaie',
+    coins: 'Crypto',
     fiats: 'Devise'
 };
+
 
 class List extends React.Component {
 
@@ -30,7 +32,7 @@ class List extends React.Component {
                 as = "select"
                 className = "list"
                 type='text'
-                value={this.props.value}
+                choice={this.props.choice}
                 onChange={this.props.handleChange}
             >
                 <option>{""}</option>
@@ -38,10 +40,23 @@ class List extends React.Component {
                 {this.props.listContent.map( (data, index) => {
                     return(
                         <option key={index}>{data}</option>
-                    )
+                    );
                 })}
             </Form.Control>
-        )
+        );
+    }
+
+    renderInputValue(){
+        // console.log('this.props.listContent.length ',this.props.listContent.length );
+
+        return (
+            <FormControl
+                as = "input"
+                type='text'
+                value={this.props.value}
+                onChange={this.props.calcChange}
+            />
+        );
     }
 
     render(){
@@ -54,6 +69,7 @@ class List extends React.Component {
                     <InputGroup.Text id="inputCoin">{label[this.props.listOf]}</InputGroup.Text>
                 </InputGroup.Prepend>
 
+                {this.renderInputValue()}
                 {this.renderList()}
 
             </InputGroup >
