@@ -27,6 +27,9 @@ class Convert extends React.Component {
             fiat: '',
             value: '',
             convertionResult: '...',
+            convertionFiatToCoin: '...',
+            convertionCoinToFiat: '...',
+
             
         };
 
@@ -120,19 +123,38 @@ class Convert extends React.Component {
                 >
                 </Col>
 
-                <Col
-                    xs={{ span: 12, order: 2 }}
-                    md={10}
-                    lg={6}
-                    xl={7}
-                >
+                <Col xs={{ span: 12, order: 1}}>
 
                     <Row>
+                        <Col
+                            xs={{ span: 12, order: 1 }}
+                            sm={{ span: 8, offset: 2, order: 1 }}
+                            md={{ span: 6, offset: 3, order: 1 }}
+                            xl={{ span: 4, offset: 4, order: 1 }}
+                        >
+                        
+                            <Card>
+                                <Card.Body>
+                                    <Card.Text as="h5">{this.state.convertionResult}</Card.Text>
+                                </Card.Body>
+                            </Card>
+
+                        </Col>
+                    </Row>  
+                    
+                </Col>
+
+                <Col // Conteneur des input lists
+                    xs={{ span: 12, order: 2 }}
+
+                >
+
+                    <Row> 
 
                         <Col
-                            xs={{ span: 12, order: "'first" }}
-                            sm={6}
-                            lg={12}
+                            xs={{ span: 12, order: "first" }}
+                            sm={12}
+                            lg={6}
                             xl={6}
                         >{/* <Col xs={{ span: 12, order: 'first' }} sm={12} lg={12}> */}
                             <List
@@ -149,8 +171,8 @@ class Convert extends React.Component {
 
                         <Col
                             xs={{ span: 12, order: 'last' }}
-                            sm={6}
-                            lg={12}
+                            sm={12}
+                            lg={6}
                             xl={6}
                         >
                             <List
@@ -165,14 +187,14 @@ class Convert extends React.Component {
 
                         </Col>
 
-                    </Row>
+                    </Row> 
 
-                </Col>
+                </Col>{/*Conteneur des input lists */}
 
                 <Col
-                    xs={{ span: 3, order: 3 }}
-                    md={{ span: 2, order: 3 }}
-                    xl={2}
+                    xs={{ span: 4, offset: 4, order: 3 }}
+                    md={{ span: 2, offset: 5, order: 3 }}
+                    xl={{ span: 2, offset: 5 }}
                 >
 
                     <Button
@@ -185,31 +207,39 @@ class Convert extends React.Component {
                     </Button>
 
                 </Col>
+                <Col xs={{ span: 12, order: 1}}>
 
-                <Col
-                    xs={{ span: 9, order: "last" }}
-                    sm={{ span: 7, order: "last" }}
-                    md={{ span: 6, offset: 3 }}
-                    lg={{ span: 4, offset: 0, order: 1 }}
-                    xl={{ span: 3, offset: 0, order: 1 }}
-                >
-                
-                    <Card
+<Row>
+    <Col
+        xs={{ span: 12, order: "first" }}
+        md={{ span: 6, order: "first" }}
+        xl={{ span: 4, offset: 1, order: "first" }}
+    >
+    
+        <Card>
+            <Card.Body>
+                <Card.Text as="h5">{this.state.convertionResult}</Card.Text>
+            </Card.Body>
+        </Card>
 
-                    >
-                        <Card.Body>
-                            <Card.Text as="h5">{this.state.convertionResult}</Card.Text>
-                        </Card.Body>
-                    </Card>
+    </Col>
 
-                </Col>
-                {/* <Col xs={12}>
-                    <Input
-                        handleChange={this.handleChange}
-                        // form={this.state.form}
-                    >
-                    </Input>
-                </Col> */}
+    <Col
+        xs={{ span: 12, order: "last" }}
+        md={{ span: 6, order: "last" }}
+        xl={{ span: 4, offset: 2, order: "last" }}
+    >
+    
+        <Card>
+            <Card.Body>
+                <Card.Text as="h5">{this.state.convertionResult}</Card.Text>
+            </Card.Body>
+        </Card>
+
+    </Col>
+</Row>  
+
+</Col>
 
             </Row>
             
