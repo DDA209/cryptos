@@ -23,7 +23,7 @@ class Convert extends React.Component {
             isDisabled: 'disabled',
             coin: '',
             fiat: '',
-            value: '',
+            // value: '',
             convertionResult: '...',
             convertionFiatToCoin: '...',
             convertionCoinToFiat: '...',
@@ -59,17 +59,9 @@ class Convert extends React.Component {
                 // console.log('components/core/Convert#onClickBtn ',);
                 // console.log('components/core/Convert#onClickBtn this.state.coin',inputCoinValue);
                 // console.log('components/core/Convert#onClickBtn inputFiatValue',inputFiatValue);
-                if ( isNaN(inputCoinValue)) {
-                    convertionCoinToFiat = '...'
-                } else {
-                    convertionCoinToFiat = `${inputCoinValue}  ${this.state.coin} = ${ inputCoinValue * change }  ${this.state.fiat}`
-                }
-        
-                if ( isNaN(inputFiatValue) ) {
-                    convertionFiatToCoin = '...'
-                } else {
-                    convertionFiatToCoin = `${inputFiatValue}  ${this.state.fiat} = ${ inputFiatValue / change }  ${this.state.coin}`
-                }
+                !inputCoinValue || inputCoinValue === 0?convertionCoinToFiat = '...':convertionCoinToFiat = `${inputCoinValue}  ${this.state.coin} = ${ inputCoinValue * change } ${this.state.fiat}`;
+                !inputFiatValue || inputFiatValue === 0?convertionFiatToCoin = '...':convertionFiatToCoin = `${inputFiatValue}  ${this.state.fiat} = ${ inputFiatValue / change } ${this.state.coin}`;
+                
                 this.setState({
                     convertionResult: `1 ${this.state.coin} = ${change} ${this.state.fiat}`,
                     convertionCoinToFiat,
@@ -200,8 +192,8 @@ class Convert extends React.Component {
                                 listOf = "coins"
                                 listContent = {this.props.coins}
                                 choice={this.state.coin}
-                                value={inputCoinValue}
-                                // value = {this.state.value}
+                                // value={inputCoinValue}
+                                value = {this.state.value}
                                 handleChange = {this.handleChangeCoin}
                                 valueChange = {this.changeCoinValue}
                                 
@@ -219,8 +211,9 @@ class Convert extends React.Component {
                                 listOf = "fiats"
                                 listContent = {this.props.fiats}
                                 choice={this.state.fiat}
-                                value={inputFiatValue}
-                                // value = {this.state.value}
+                                // value = {inputFiatValue}
+                                value = {this.state.value}
+                                // ref = {this.state.ref}
                                 handleChange = {this.handleChangeFiat}
                                 valueChange = {this.changeFiatValue}
                             />

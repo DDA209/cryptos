@@ -53,7 +53,8 @@ class List extends React.Component {
             <FormControl
                 as="input"
                 type="number"
-                value={this.props.value || ""}
+                value={this.props.value}
+                // ref={this.props.ref}
                 onChange={this.props.valueChange}
             />
         );
