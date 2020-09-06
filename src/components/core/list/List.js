@@ -7,12 +7,10 @@ import {
     FormControl
  } from 'react-bootstrap';
 
-
 const label = {
     coins: 'Crypto',
     fiats: 'Devise'
 };
-
 
 class List extends React.Component {
 
@@ -45,16 +43,18 @@ class List extends React.Component {
             </Form.Control>
         );
     }
-
+    /**
+     * Insertion du montant à calculer
+     */
     renderInputValue(){
         // console.log('this.props.listContent.length ',this.props.listContent.length );
 
         return (
             <FormControl
-                as = "input"
-                type='text'
-                value={this.props.value}
-                onChange={this.props.calcChange}
+                as="input"
+                type="number"
+                value={this.props.value || ""}
+                onChange={this.props.valueChange}
             />
         );
     }
@@ -65,12 +65,12 @@ class List extends React.Component {
 
             <InputGroup  className="input-group mb-3">
 
+                {this.renderInputValue()}
+                {this.renderList()}
+
                 <InputGroup.Prepend>
                     <InputGroup.Text id="inputCoin">{label[this.props.listOf]}</InputGroup.Text>
                 </InputGroup.Prepend>
-
-                {this.renderInputValue()}
-                {this.renderList()}
 
             </InputGroup >
         )

@@ -24,7 +24,7 @@ class Api {
             };
             // console.log(`components/utils/Api#getList${input} json : `, json);
             result = result.sort();
-            console.log(`components/utils/Api#getList${input} result : `, result);
+            // console.log(`components/utils/Api#getList${input} result : `, result);
             return result;
         });
     }
@@ -33,7 +33,7 @@ class Api {
     getPrice(coin, fiat) {
 
         const getUrl = `${url}/simple/price?ids=${coin}&vs_currencies=${fiat}`;
-        console.log('components/utils/Api#getPrice getUrl : ', getUrl);
+        // console.log('components/utils/Api#getPrice getUrl : ', getUrl);
         
         
         return fetch(getUrl)

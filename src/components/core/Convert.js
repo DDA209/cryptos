@@ -11,12 +11,10 @@ import List from '../core/list/List';
 import Api from '../utils/Api';
 
 
-
+let inputCoinValue = undefined;
+let inputFiatValue = undefined;
 
 class Convert extends React.Component {
-
-
-
 
     constructor(props){
         super(props)
@@ -29,29 +27,53 @@ class Convert extends React.Component {
             convertionResult: '...',
             convertionFiatToCoin: '...',
             convertionCoinToFiat: '...',
-
-            
         };
-
-
 
         // console.log('components/core/Convert#constructor coin -', this.state.fiat, '-- fiat -', this.state.coin)
         this.handleChangeCoin = this.handleChangeCoin.bind(this);
         this.handleChangeFiat = this.handleChangeFiat.bind(this);
         this.onClickBtn = this.onClickBtn.bind(this);
+
+
     }
+
+
 
     onClickBtn(){
         // this.convert();
+
+        let convertionCoinToFiat = '';
+        let convertionFiatToCoin = '';
 
         if ( this.state.coin !== '' && this.state.fiat !== '' ){
             this.setState({
                 convertionResult: 'Vérification du prix en cours'
             });
+
+
             Api.getPrice(this.state.coin, this.state.fiat)
             .then((change) =>{
+                // console.log('components/core/Convert#onClickBtn this.state.coin',this.state.coin);
+                // console.log('components/core/Convert#onClickBtn this.state.fiat',this.state.fiat);
+                // console.log('components/core/Convert#onClickBtn change',change);
+                // console.log('components/core/Convert#onClickBtn ',);
+                // console.log('components/core/Convert#onClickBtn this.state.coin',inputCoinValue);
+                // console.log('components/core/Convert#onClickBtn inputFiatValue',inputFiatValue);
+                if ( isNaN(inputCoinValue)) {
+                    convertionCoinToFiat = '...'
+                } else {
+                    convertionCoinToFiat = `${inputCoinValue}  ${this.state.coin} = ${ inputCoinValue * change }  ${this.state.fiat}`
+                }
+        
+                if ( isNaN(inputFiatValue) ) {
+                    convertionFiatToCoin = '...'
+                } else {
+                    convertionFiatToCoin = `${inputFiatValue}  ${this.state.fiat} = ${ inputFiatValue / change }  ${this.state.coin}`
+                }
                 this.setState({
-                    convertionResult: `1 ${this.state.coin} = ${change} ${this.state.fiat}`
+                    convertionResult: `1 ${this.state.coin} = ${change} ${this.state.fiat}`,
+                    convertionCoinToFiat,
+                    convertionFiatToCoin
                 });
 
             });
@@ -67,7 +89,7 @@ class Convert extends React.Component {
 
     handleChangeCoin(event) {
 
-        console.log('components/core/Convert#handleChangeCoin() coin');
+        // console.log('components/core/Convert#handleChangeCoin() coin',inputCoinValue);
 
         let coin =  event.target.value;
 
@@ -88,7 +110,7 @@ class Convert extends React.Component {
         // console.log('components/core/Convert#handleChange event', event);
         // console.log('components/core/Convert#handleChange event.target.value', event.target.value);
 
-        console.log('components/core/Convert#handleChangeCoin() fiat');
+        // console.log('components/core/Convert#handleChangeCoin() fiat',inputFiatValue);
 
         let fiat = event.target.value;
 
@@ -107,11 +129,25 @@ class Convert extends React.Component {
         // console.log('components/core/Convert#handleChangeFiat this.state.fiat', this.state.fiat)
     }
 
+    changeCoinValue(event){
+        // console.log('components/core/Convert#changeCoinValue event:', event.target.value);
+        // let newCoinValue = event.target.value;
+        inputCoinValue = event.target.value;
+        console.log('components/core/Convert#changeCoinValue inputCoinValue:', inputCoinValue);
+    }
+
+    changeFiatValue(event){
+        // console.log('components/core/Convert#changeFiatValue event:', event.target.value);
+        // let newFiatValue = event.target.value;
+        inputFiatValue = event.target.value;
+        console.log('components/core/Convert#changeFiatValue inputFiatValue:', inputFiatValue);
+        
+    }
+
     render(){
     
         // console.log('components/core/Convert#Render this.state.value', this.state.value)
-        let inputCoinValue = 1234;
-        let inputFiatValue = 5678;
+
 
         return(
 
@@ -123,7 +159,10 @@ class Convert extends React.Component {
                 >
                 </Col>
 
-                <Col xs={{ span: 12, order: 1}}>
+                <Col 
+                    xs={{ span: 12, order: 1}}
+                    className="mb-5"
+                >
 
                     <Row>
                         <Col
@@ -146,17 +185,16 @@ class Convert extends React.Component {
 
                 <Col // Conteneur des input lists
                     xs={{ span: 12, order: 2 }}
-
                 >
 
                     <Row> 
 
-                        <Col
+                        <Col // liste des coins
                             xs={{ span: 12, order: "first" }}
-                            sm={12}
-                            lg={6}
-                            xl={6}
-                        >{/* <Col xs={{ span: 12, order: 'first' }} sm={12} lg={12}> */}
+                            sm={{ span: 10, offset: 1 }}
+                            lg={{ span: 6, offset: 0 }}
+                            xl={{ span: 4, offset: 2 }}
+                        >
                             <List
                                 default = "bitcoin" // not used yet
                                 listOf = "coins"
@@ -165,15 +203,16 @@ class Convert extends React.Component {
                                 value={inputCoinValue}
                                 // value = {this.state.value}
                                 handleChange = {this.handleChangeCoin}
+                                valueChange = {this.changeCoinValue}
                                 
                             />
                         </Col>
 
-                        <Col
+                        <Col // liste des devises
                             xs={{ span: 12, order: 'last' }}
-                            sm={12}
-                            lg={6}
-                            xl={6}
+                            sm={{ span: 10, offset: 1 }}
+                            lg={{ span: 6, offset: 0 }}
+                            xl={4}
                         >
                             <List
                                 default = "eur" // not used yet
@@ -183,6 +222,7 @@ class Convert extends React.Component {
                                 value={inputFiatValue}
                                 // value = {this.state.value}
                                 handleChange = {this.handleChangeFiat}
+                                valueChange = {this.changeFiatValue}
                             />
 
                         </Col>
@@ -191,10 +231,11 @@ class Convert extends React.Component {
 
                 </Col>{/*Conteneur des input lists */}
 
-                <Col
+                <Col // Boutton convertir
                     xs={{ span: 4, offset: 4, order: 3 }}
-                    md={{ span: 2, offset: 5, order: 3 }}
+                    md={{ span: 2, offset: 5 }}
                     xl={{ span: 2, offset: 5 }}
+                    className="mb-5"
                 >
 
                     <Button
@@ -207,39 +248,47 @@ class Convert extends React.Component {
                     </Button>
 
                 </Col>
-                <Col xs={{ span: 12, order: 1}}>
+                <Col
+                    xs={{ span: 12, order: 4 }}
+                >
 
-<Row>
-    <Col
-        xs={{ span: 12, order: "first" }}
-        md={{ span: 6, order: "first" }}
-        xl={{ span: 4, offset: 1, order: "first" }}
-    >
-    
-        <Card>
-            <Card.Body>
-                <Card.Text as="h5">{this.state.convertionResult}</Card.Text>
-            </Card.Body>
-        </Card>
+                    <Row>
+                        <Col // conversion Coin vers Fiat
+                            xs={{ span: 12, order: "first" }}
+                            sm={{ span: 8, offset: 2 }}
+                            md={{ span: 6, offset: 0 }}
+                            lg={{ span: 5, offset: 1 }}
+                            xl={{ span: 4, offset: 2 }}
+                            className="mb-3"
+                        >
+                        
+                            <Card>
+                                <Card.Body>
+                                    <Card.Text as="h5">{this.state.convertionCoinToFiat}</Card.Text>
+                                </Card.Body>
+                            </Card>
 
-    </Col>
+                        </Col>
 
-    <Col
-        xs={{ span: 12, order: "last" }}
-        md={{ span: 6, order: "last" }}
-        xl={{ span: 4, offset: 2, order: "last" }}
-    >
-    
-        <Card>
-            <Card.Body>
-                <Card.Text as="h5">{this.state.convertionResult}</Card.Text>
-            </Card.Body>
-        </Card>
+                        <Col // conversion Fiat vers Coin
+                            xs={{ span: 12, order: "last" }}
+                            sm={{ span: 8, offset: 2 }}
+                            md={{ span: 6, offset: 0 }}
+                            lg={5}
+                            xl={4}
+                            className="mb-3"
+                        >
+                        
+                            <Card>
+                                <Card.Body>
+                                    <Card.Text as="h5">{this.state.convertionFiatToCoin}</Card.Text>
+                                </Card.Body>
+                            </Card>
 
-    </Col>
-</Row>  
+                        </Col>
+                    </Row>  
 
-</Col>
+                </Col>
 
             </Row>
             
